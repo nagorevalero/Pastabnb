@@ -17,7 +17,7 @@ class User
 
     def setup_prepared_statements
       Database.connection.prepare('user_by_username', 'SELECT * FROM users WHERE username=$1')
-      Database.connection.prepare('user_verify_hash', 'SELECT EXISTS (SELECT * from USERS where username=$1 AND password_hash=$2)')
+      Database.connection.prepare('user_get_hash', 'SELECT password_hash from USERS where username=$1')
       Database.connection.prepare('user_update_password', 'UPDATE users SET password_hash=$1 WHERE username=$2')
     end
 
@@ -31,8 +31,8 @@ class User
     end
 
     def verify_password(username, password)
-      result = Database.connection.exec_prepared('user_verify_hash', [username, BCrypt::Password.create(password)])
-      result[:exists]
+      result = Database.connection.exec_prepared('user_get_hash', [username])
+      BCrypt::Password.new(result[:password_hash]) == password
     end
   end
 end
