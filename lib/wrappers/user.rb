@@ -28,7 +28,7 @@ class User
     end
 
     def create_user(user)
-      Database.connection.exec_prepared('user_insert', [first_name, last_name, email, telephone])
+      Database.connection.exec_prepared('user_insert', [user.first_name, user.last_name, user.email, user.telephone])
     end
   end
 end
