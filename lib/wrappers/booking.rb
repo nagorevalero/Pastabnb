@@ -32,6 +32,6 @@ class Booking
 	
 	def create_booking(booking)
     	Database.connection.exec("INSERT INTO bookings (id, spces, booking_user, date , status) 
-		VALUES('#{id}', '#{spaces}', '#{booking_user}', '#{date}', '#{status}');")
+		VALUES($1, $2, $3, $4, $5 );")
 	end
 end
