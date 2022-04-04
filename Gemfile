@@ -13,3 +13,5 @@ gem "capybara", "~> 3.36"
 gem "simplecov", "~> 0.21.2"
 
 gem "webrick", "~> 1.7"
+
+gem "bcrypt", "~> 3.1"

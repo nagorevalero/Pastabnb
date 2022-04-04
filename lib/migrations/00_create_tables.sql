@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS users(
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT NOT NULL,
-    telephone TEXT NULL
+    telephone TEXT NULL,
+    password_hash TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS spaces(
