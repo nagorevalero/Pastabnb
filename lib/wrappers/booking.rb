@@ -17,12 +17,12 @@ class Booking
 		end
 
    	def _bookings_from_query(query)
-   	 query.map do { |it| BookingModel.new(
+   	 query.map do |it| BookingModel.new(
 				it[:id],
 				it[:space], 
 				it[:booking_user], 
 				Date.parse it[:date], 
-			 	it[:status]) }
+			 	it[:status])
 			end
   	end
 
