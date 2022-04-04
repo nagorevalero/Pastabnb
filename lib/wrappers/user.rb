@@ -16,7 +16,7 @@ class User
     def setup_prepared_statements
       Database.connection.prepare('user_by_username', 'SELECT * FROM users WHERE username=$1')
       Database.connection.prepare('user_insert', 'INSERT INTO users (first_name, last_name, email, telephone) 
-      VALUES($1, $2, $3, $4;')
+      VALUES($1, $2, $3, $4);')
     end
 
     def _users_from_query(query)
