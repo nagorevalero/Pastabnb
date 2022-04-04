@@ -1,4 +1,4 @@
-class BookingModel
+class Booking
 
 	attr_reader :id, :space, :booking_user, :date, :status
 
@@ -13,11 +13,12 @@ class BookingModel
 	class << self
 
   	def setup_prepared_statements
-   	 Database.connection.prepare('booking_by_id', 'SELECT * FROM bookings WHERE id=$1')
+   	 	Database.connection.prepare('booking_by_id', 'SELECT * FROM bookings WHERE id=$1')
 		end
 
-   	def _booking_from_query(query)
+   	def _bookings_from_query(query)
    	 query.map do { |it| BookingModel.new(
+				it[:id],
 				it[:space], 
 				it[:booking_user], 
 				Date.parse it[:date], 
@@ -26,7 +27,7 @@ class BookingModel
   	end
 
   	def get_by_id(id)
-   	 _booking_from_query(Database.connection.exec_prepared('booking_by_id', [id]))[0]
+   		 _bookings_from_query(Database.connection.exec_prepared('booking_by_id', [id]))[0]
   	end
 	end
 end
