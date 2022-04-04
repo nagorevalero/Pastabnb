@@ -31,7 +31,8 @@ class User
     end
 
     def verify_password(username, password)
-      Database.connection.exec_prepared('user_verify_hash', [username, BCrypt::Password.create(password)])
+      result = Database.connection.exec_prepared('user_verify_hash', [username, BCrypt::Password.create(password)])
+      result[:exists]
     end
   end
 end
