@@ -21,3 +21,7 @@ nav > span.user {
 body > div.container {
     margin: 1em;
 }
+
+.error {
+    color: #900;
+}

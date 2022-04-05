@@ -1,4 +1,5 @@
 <h4>Sign Up</h4>
+<span class="error" id="signup-error"></span>
 <form action="/signup" method="post">
   <table>
     <tr>
@@ -32,3 +33,12 @@
     </tr>
   </table>
 </form>
+<script>
+    const messages = {
+        missing: 'Please fill out all the fields.',
+        invalid: 'A field was incorrectly filled out.',
+        taken: 'A user already exists with that name.'
+    }
+    const error = new URLSearchParams(window.location.search).get('err');
+    if (error != null) document.getElementById('signup-error').innerText = messages[error] ?? 'An error occurred.'
+</script>
