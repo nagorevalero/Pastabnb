@@ -14,6 +14,8 @@ class Booking
 
   	def setup_prepared_statements
    	 	Database.connection.prepare('booking_by_id', 'SELECT * FROM bookings WHERE id=$1')
+		Database.connection.exec_prepare('create_booking', "INSERT INTO bookings (id, spces, booking_user, date , status) 
+		VALUES($1, $2, $3, $4, $5);")
 		end
 
    	def _bookings_from_query(query)
@@ -31,7 +33,7 @@ class Booking
   	end
 	
 	def create_booking(booking)
-    	Database.connection.exec_prepared("INSERT INTO bookings (id, spces, booking_user, date , status) 
-		VALUES($1, $2, $3, $4, $5);")
+    	Database.connection.exec_prepared('create_booking', [booking.id, booking.space, booking.booking_user, booking.date, booking.status])
 	end
 end
+        
