@@ -1,5 +1,5 @@
 require 'sinatra'
-
+require_relative 'wrappers/space'
 class PastaBnB < Sinatra::Base
   def render_template name
     erb name, layout: :layout
@@ -9,7 +9,8 @@ class PastaBnB < Sinatra::Base
     render_template :example
   end
 
-  get '/viewing' do
+  get '/space/:id' do
+    @space = Space.get_by_id(params[:id])
     render_template :viewing_single_space
   end
 

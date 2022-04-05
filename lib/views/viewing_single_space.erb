@@ -1,22 +1,20 @@
-<% @single_space = [{:id => 3445, :name => "Vila Malaga", :owner => "Alfonso Garcia",:description => "Beautiful Villa 4 people", 
-:price_per_night => "£220", :available_start => "27th May 1022", :available_end => "5th  June 2022"} ] %>
 
 <h2>Viewing property in more detail</h2>
-<% @single_space.each do |single_space| %>
+
 <br><h3>Reference number:</h3>
-<p><%=single_space[:id] %></p><br>
+<p><%=@space.id %></p><br>
  <h3>Name:</h3>
-<p><%=single_space[:name] %></p><br>
+<p><%=@space.name %></p><br>
 <h3>Owner:</h3>
-<p><%=single_space[:owner] %></p><br>
+<p><%=@space.owner %></p><br>
  <h3>Description:</h3>
-<p><%=single_space[:description] %></p><br>
+<p><%=@space.description %></p><br>
  <h3>Price per night:</h3>
-<p><%=single_space[:price_per_night] %></p><br>
+<p><%=@space.price_per_night%></p><br>
 <h3>Available start date:</h3>
-<p><%=single_space[:available_start] %></p><br>
+<p><%=@space.available_start %></p><br>
 <h3>Available end date:</h3>
-<p><%=single_space[:available_end] %></p><br>
+<p><%=@space.available_end %></p><br>
 <%end%> <br> 
  <h4>Click to <input type="submit" value="Book"  style="height:40px; width:70px" /></h4>
 
