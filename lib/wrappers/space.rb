@@ -38,4 +38,5 @@ class Space
         def insert_space(space)
             Database.connection.exec_prepared('space_insert', [space.id, space.name, space.owner, space.desciption, space.price_per_night, space.available_start, space.available_end])             
         end
+    end
 end
