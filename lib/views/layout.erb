@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PastaB&B</title>
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+<nav>
+  <span>PastaB&B</span>
+  <span class="user">
+      <% if @user.nil? %>
+      Log In
+      <% else %>
+      <%= @user.username %>
+      <% end %>
+    </span>
+</nav>
+<div class="container">
+  <%= yield :content %>
+</div>
+</body>
+</html>
