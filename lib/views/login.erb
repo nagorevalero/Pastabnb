@@ -1,0 +1,28 @@
+<h4>Log In</h4>
+<span class="error" id="login-error"></span>
+<form action="/login" method="post">
+  <table>
+    <tr>
+      <td><label for="username">Username</label></td>
+      <td><input id="username" name="username" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="password">Password</label></td>
+      <td><input id="password" name="password" type="password" required></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" content="Submit">
+      </td>
+    </tr>
+  </table>
+</form>
+
+<script>
+  const messages = {
+      missing: 'Please fill out all the fields.',
+      incorrect: 'Incorrect username or password.'
+  }
+  const error = new URLSearchParams(window.location.search).get('err');
+  if (error != null) document.getElementById('login-error').innerText = messages[error] ?? 'An error occurred.'
+</script>

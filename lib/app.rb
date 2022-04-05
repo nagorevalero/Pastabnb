@@ -15,6 +15,19 @@ class PastaBnB < Sinatra::Base
     render_template :example
   end
 
+  get '/login' do
+    redirect '/example' unless session[:user].nil?
+    render_template :login
+  end
+
+  post '/login' do
+    redirect '/example' unless session[:user].nil?
+    redirect '/login?err=missing' if %i[username password].any? { |it| params[it].nil? }
+    redirect '/login?err=incorrect' unless User.verify_password(params[:username], params[:password])
+    session[:user] = params[:username]
+    redirect '/example'
+  end
+
   get '/signup' do
     redirect '/example' unless session[:user].nil?
     render_template :signup
@@ -26,6 +39,7 @@ class PastaBnB < Sinatra::Base
       redirect '/signup?err=missing'
     end
     redirect '/signup?err=taken' unless User.get_by_username(params[:username]).nil?
+    # fixme - sanitation
     user = User.new(params[:username], params[:first_name], params[:last_name], params[:email], params[:telephone])
 
     User.create_user(user, params[:password])

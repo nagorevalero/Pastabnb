@@ -28,7 +28,7 @@ class User
 
     def _users_from_query(query)
       # the password hash is intentionally omitted
-      query.map { |it| User.new(it[:username], it[:first_name], it[:last_name], it[:email], it[:telephone]) }
+      query.map { |it| User.new(it['username'], it['first_name'], it['last_name'], it['email'], it['telephone']) }
     end
 
     def get_by_username(username)
@@ -37,7 +37,8 @@ class User
 
     def verify_password(username, password)
       result = Database.connection.exec_prepared('user_get_hash', [username])
-      BCrypt::Password.new(result[:password_hash]) == password
+      return false if result.num_tuples.zero?
+      BCrypt::Password.new(result[0]['password_hash']) == password
     end
 
     def create_user(user, password)
