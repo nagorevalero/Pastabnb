@@ -1,5 +1,6 @@
 require 'sinatra'
 require_relative 'wrappers/database'
+require 'uri'
 
 Database.init('pastabnb')
 
@@ -39,8 +40,14 @@ class PastaBnB < Sinatra::Base
       redirect '/signup?err=missing'
     end
     redirect '/signup?err=taken' unless User.get_by_username(params[:username]).nil?
-    # fixme - sanitation
-    user = User.new(params[:username], params[:first_name], params[:last_name], params[:email], params[:telephone])
+    unless params[:email] =~ URI::MailTo::EMAIL_REGEXP && params[:telephone] =~ /\+?\d+[-\d]+\d/
+      redirect '/signup?err=invalid'
+    end
+    user = User.new(ERB::Util.html_escape(params[:username]),
+                    ERB::Util.html_escape(params[:first_name]),
+                    ERB::Util.html_escape(params[:last_name]),
+                    params[:email],
+                    params[:telephone])
 
     User.create_user(user, params[:password])
     session[:user] = user.username
