@@ -53,4 +53,9 @@ class PastaBnB < Sinatra::Base
     session[:user] = user.username
     redirect '/example'
   end
+
+  get '/logout' do
+    session[:user] = nil
+    redirect '/example'
+  end
 end
