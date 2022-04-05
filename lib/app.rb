@@ -8,4 +8,8 @@ class PastaBnB < Sinatra::Base
   get '/example' do
     render_template :example
   end
+
+  get '/view_spaces' do
+    render_template :all_spaces
+  end
 end
