@@ -27,7 +27,7 @@ class Space
                 it[:description],
                 it[:price_per_night], 
                 Date.parse(it[:available_start]), 
-                Date.parse(it[:available_end]) 
+                Date.parse(it[:available_end])) 
             end
         end
     
