@@ -11,7 +11,7 @@ class PastaBnB < Sinatra::Base
 
   get '/space/:id' do
     @space = Space.get_by_id(params[:id])
-    render_template :viewing_single_space
+    render_template :view_single_space
   end
 
 end
