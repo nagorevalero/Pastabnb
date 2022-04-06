@@ -1,0 +1,12 @@
+<% @spaces.each do |space|%>
+  <a href="<% space.id%>">
+    <div class="spaceCon">
+      <img src="https://via.placeholder.com/250x175">
+      <div class="content">
+        <h3><%=  space.name %></h3>
+        <p><%= space.description %></p>
+        <h4>Price Per Night: £<%= space.price_per_night %></h4>
+      </div>
+    </div>
+  </a>
+<% end %>

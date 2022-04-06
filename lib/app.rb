@@ -16,6 +16,10 @@ class PastaBnB < Sinatra::Base
     render_template :example
   end
 
+  get '/view_spaces' do
+    @spaces = Space.get_spaces
+    render_template :all_spaces
+
   get '/login' do
     redirect '/example' unless session[:user].nil?
     render_template :login
