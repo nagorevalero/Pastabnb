@@ -1,22 +1,11 @@
-<%# Dummy DATA  %>
-<% @spaces = [{:id => 3445,:name => "exampleName",
-:description => "exampleDescription top notch villa in the Maldives",
-:price_per_night => 120}, {:name => "exampleName",
-:description => "exampleDescription top notch villa in the Santorini",
-:price_per_night => 110},{:name => "exampleName",
-:description => "exampleDescription top notch villa in the Bora Bora",
-:price_per_night => 220} ]%>
-
 <% @spaces.each do |space|%>
-  <a href="<% space[:id]%>">
+  <a href="<% space.id%>">
     <div class="spaceCon">
-      <div class="image">
-        <img src="https://via.placeholder.com/250x175">
-      </div>
+      <img src="https://via.placeholder.com/250x175">
       <div class="content">
-        <h3><%=  space[:name] %></h3>
-        <p><%= space[:description] %></p>
-        <h4>Price Per Night: £<%= space[:price_per_night] %></h4>
+        <h3><%=  space.name %></h3>
+        <p><%= space.description %></p>
+        <h4>Price Per Night: £<%= space.price_per_night %></h4>
       </div>
     </div>
   </a>

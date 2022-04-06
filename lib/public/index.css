@@ -27,15 +27,11 @@ body > div.container {
   width: 33%;
 }
 
-.spaceCon .image{
+.spaceCon img{
   float: left;
 }
 
 .spaceCon .content{
   float: right;
   padding: 0 5px;
-}
-
-.pricePN{
-  align-items: right;
 }

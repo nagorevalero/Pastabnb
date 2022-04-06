@@ -10,6 +10,7 @@ class PastaBnB < Sinatra::Base
   end
 
   get '/view_spaces' do
+    @spaces = Space.get_spaces
     render_template :all_spaces
   end
 end
