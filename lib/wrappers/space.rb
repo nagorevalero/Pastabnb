@@ -1,5 +1,5 @@
 require 'date'
-
+require_relative './database'
 class Space
   attr_reader :id, :name, :owner, :description, :price_per_night, :available_start, :available_end
 

@@ -1,4 +1,5 @@
 require 'sinatra'
+require_relative 'wrappers/space'
 require_relative 'wrappers/database'
 require 'uri'
 
@@ -14,6 +15,12 @@ class PastaBnB < Sinatra::Base
 
   get '/example' do
     render_template :example
+  end
+
+
+  get '/space/:id' do
+    @space = Space.get_by_id(params[:id])
+    render_template :view_single_space
   end
 
   get '/view_spaces' do
