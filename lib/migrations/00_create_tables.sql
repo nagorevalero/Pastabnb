@@ -22,7 +22,7 @@ CREATE TYPE booking_status AS ENUM ('pending', 'approved', 'rejected');
 CREATE TABLE IF NOT EXISTS bookings(
     id SERIAL PRIMARY KEY,
     space INT NOT NULL REFERENCES spaces (id) ON DELETE CASCADE,
-    bookingUser TEXT NOT NULL REFERENCES users (username) ON DELETE CASCADE,
+    booking_user TEXT NOT NULL REFERENCES users (username) ON DELETE CASCADE,
     date DATE NOT NULL,
     status booking_status NOT NULL
 )
