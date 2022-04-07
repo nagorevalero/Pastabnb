@@ -26,6 +26,7 @@ class PastaBnB < Sinatra::Base
   get '/view_spaces' do
     @spaces = Space.get_spaces
     render_template :all_spaces
+  end
 
   get '/login' do
     redirect '/example' unless session[:user].nil?
@@ -67,6 +68,18 @@ class PastaBnB < Sinatra::Base
 
   get '/logout' do
     session[:user] = nil
+    redirect '/example'
+  end
+
+  get '/book-space/:id' do
+    redirect '/example' unless session[:user].nil?
+    @booking = Space.get_by_id(params[:id])
+    render_template :book_space
+  end
+
+  post '/book-space' do
+    redirect '/example' unless session[:user].nil?
+    Booking.create_booking(Booking.new(nil, params[:space], params[:booking_user], params[:date], params[:status]))
     redirect '/example'
   end
 end

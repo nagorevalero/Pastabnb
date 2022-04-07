@@ -10,7 +10,7 @@
   <span>PastaB&B</span>
   <span class="user">
       <% if @user.nil? %>
-      Log In
+      <a href="/login">Log In</a>
       <% else %>
       <%= @user.username %>
       <% end %>
