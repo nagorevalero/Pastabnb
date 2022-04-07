@@ -28,6 +28,15 @@ class PastaBnB < Sinatra::Base
     render_template :all_spaces
   end
 
+  get '/booking_decision' do
+    render_template :accept_reject_booking
+  end
+
+  post '/booking_accept_reject' do
+    @decision = params[:booking_selection]
+    render_template :accept_booking
+    end
+
   get '/login' do
     redirect '/example' unless session[:user].nil?
     render_template :login

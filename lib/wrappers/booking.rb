@@ -16,16 +16,17 @@ class Booking
       Database.connection.prepare('booking_by_id', 'SELECT * FROM bookings WHERE id=$1')
       Database.connection.prepare('create_booking', "INSERT INTO bookings (id, space, booking_user, date , status)
 		VALUES($1, $2, $3, $4, $5);")
+      Database.connection.prepare('owner_response', "UPDATE bookings SET status = $1 WHERE id = $2");
     end
 
     def _bookings_from_query(query)
       query.map do |it|
         Booking.new(
-          it[:id],
-          it[:space],
-          it[:booking_user],
-          Date.parse(it[:date]),
-          it[:status])
+          it['id'],
+          it['space'],
+          it['booking_user'],
+          Date.parse(it['date']),
+          it['status'])
       end
     end
 
@@ -35,6 +36,10 @@ class Booking
 
     def create_booking(booking)
       Database.connection.exec_prepared('create_booking', [booking.id, booking.space, booking.booking_user, booking.date, booking.status])
+    end
+  
+    def set_response_from_owner(id, status)
+      Database.connection.exec_prepared('owner_response', [id, status])
     end
   end
 end
