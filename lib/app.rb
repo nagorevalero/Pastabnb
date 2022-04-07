@@ -7,9 +7,9 @@ Database.init('pastabnb')
 class PastaBnB < Sinatra::Base
   enable :sessions
 
-  def render_template name
+  def render_template(name)
     @user = User.get_by_username(session[:user]) unless session[:user].nil?
-    erb name, layout: :layout
+    erb(name, layout: :layout)
   end
 
   get '/example' do
