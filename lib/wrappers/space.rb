@@ -19,7 +19,7 @@ class Space
       Database.connection.prepare('space_insert', "INSERT INTO spaces (id, name, owner, description, price_per_night, available_start, available_end) VALUES($1, $2, $3, $4, $5, $6, $7);")
       Database.connection.prepare('all_spaces', 'SELECT * FROM spaces')
     end
-
+  
     def _spaces_from_query(query)
       query.map do |it| Space.new(
         it['id'],
@@ -31,7 +31,7 @@ class Space
         Date.parse(it['available_end'])) 
       end
     end
-
+  
     def get_by_id(id)
       _spaces_from_query(Database.connection.exec_prepared('space_by_id', [id]))[0]
     end

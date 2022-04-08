@@ -8,9 +8,9 @@ Database.init('pastabnb')
 class PastaBnB < Sinatra::Base
   enable :sessions
 
-  def render_template name
+  def render_template(name)
     @user = User.get_by_username(session[:user]) unless session[:user].nil?
-    erb name, layout: :layout
+    erb(name, layout: :layout)
   end
 
   get '/example' do
@@ -80,6 +80,17 @@ class PastaBnB < Sinatra::Base
   post '/book-space' do
     redirect '/example' unless session[:user].nil?
     Booking.create_booking(Booking.new(nil, params[:space], params[:booking_user], params[:date]))
+    redirect '/example'
+  end
+ 
+  get '/create' do
+    redirect '/example' if session[:user].nil?
+    render_template :create_new_space
+  end
+
+  post '/create' do
+    redirect '/example' if session[:user].nil?
+    insert_space(Space.new(nil, params[:name], params[:owner], params[:desciption], params[:price_per_night], params[:available_start],params[:available_end]))
     redirect '/example'
   end
 end
