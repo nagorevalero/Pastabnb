@@ -73,12 +73,12 @@ class PastaBnB < Sinatra::Base
 
  
   get '/create' do
-    redirect '/example' unless session[:user].nil?
+    redirect '/example' if session[:user].nil?
     render_template :create_new_space
   end
 
   post '/create' do
-    redirect '/example' unless session[:user].nil?
+    redirect '/example' if session[:user].nil?
     insert_space(Space.new(nil, params[:name], params[:owner], params[:desciption], params[:price_per_night], params[:available_start],params[:available_end]))
     redirect '/example'
   end
