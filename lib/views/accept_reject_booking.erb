@@ -5,6 +5,7 @@
 <p>Please choose to accept or reject booking.</p>
 
 <form action="/booking_accept_reject" method="post">
+<input type="hidden" name="booking_id" value="<%=@booking%>" >
   <label for="options">Booking decision:</label>
   <select name="booking_selection" id="options">
     <option value="accept">Accept</option>
