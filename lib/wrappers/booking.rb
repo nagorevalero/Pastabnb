@@ -14,8 +14,7 @@ class Booking
 
     def setup_prepared_statements
       Database.connection.prepare('booking_by_id', 'SELECT * FROM bookings WHERE id=$1')
-      Database.connection.prepare('create_booking', "INSERT INTO bookings (id, space, booking_user, date , status)
-		VALUES($1, $2, $3, $4, $5);")
+      Database.connection.prepare('create_booking', "INSERT INTO bookings (id, space, booking_user, date, status) VALUES ($1, $2, $3, $4, 'pending');")
       Database.connection.prepare('owner_response', "UPDATE bookings SET status = $1 WHERE id = $2");
     end
 

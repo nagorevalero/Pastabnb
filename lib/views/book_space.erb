@@ -1,0 +1,27 @@
+<h4>Book a space</h4>
+
+<form action="/book-space" method="POST">
+  <table>
+    <tr>
+      <td><h4>Space</h4></td>
+      <td><h4><%= @space.name %></h4></td>
+    </tr>
+    
+    <tr>
+      <td><h4>Booking User</h4></td>
+      <td><h4><%= @user.username %></h4></td>
+    </tr>
+    
+    <tr>
+      <td><h4>Date</h4></td>
+      <td>
+        <h5><%= @space.available_start %> to <%= @space.available_end%> </h5>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" content="Submit" />
+      </td>
+    </tr>
+  </table>
+</form>
