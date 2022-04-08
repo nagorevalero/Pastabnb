@@ -1,6 +1,7 @@
 <h4>Book a space</h4>
 
 <form action="/book-space" method="POST">
+  <input type="hidden" name="space_id" value="<%= @space.id %>">
   <table>
     <tr>
       <td><h4>Space</h4></td>

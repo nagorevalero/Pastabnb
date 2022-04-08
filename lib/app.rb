@@ -17,7 +17,6 @@ class PastaBnB < Sinatra::Base
     render_template :example
   end
 
-
   get '/space/:id' do
     @space = Space.get_by_id(params[:id])
     render_template :view_single_space
@@ -38,7 +37,7 @@ class PastaBnB < Sinatra::Base
     @decision = params[:booking_selection]
     Booking.set_response_from_owner(id, @decision)
     render_template :accept_booking
-    end
+  end
 
   get '/login' do
     redirect '/example' unless session[:user].nil?
@@ -91,10 +90,11 @@ class PastaBnB < Sinatra::Base
 
   post '/book-space' do
     redirect '/example' if session[:user].nil?
-    Booking.create_booking(Booking.new(nil, params[:space], params[:booking_user], params[:date]))
+    @space = Space.get_by_id(params[:space_id])
+    Booking.create_booking(Booking.new(nil, @space.id, session[:user], @space.available_start, nil))
     redirect '/example'
   end
- 
+
   get '/create' do
     redirect '/example' if session[:user].nil?
     render_template :create_new_space
@@ -102,7 +102,10 @@ class PastaBnB < Sinatra::Base
 
   post '/create' do
     redirect '/example' if session[:user].nil?
-    insert_space(Space.new(nil, params[:name], params[:owner], params[:desciption], params[:price_per_night], params[:available_start],params[:available_end]))
+    Space.insert_space(
+      Space.new(nil, params[:name], session[:user], params[:description],
+                params[:price_per_night], params[:available_start], params[:available_end])
+    )
     redirect '/example'
   end
 end
