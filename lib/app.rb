@@ -71,6 +71,17 @@ class PastaBnB < Sinatra::Base
     redirect '/example'
   end
 
+  get '/book-space/:id' do
+    redirect '/example' unless session[:user].nil?
+    @space = Space.get_by_id(params[:id])
+    render_template :book_space
+  end
+
+  post '/book-space' do
+    redirect '/example' unless session[:user].nil?
+    Booking.create_booking(Booking.new(nil, params[:space], params[:booking_user], params[:date]))
+    redirect '/example'
+  end
  
   get '/create' do
     redirect '/example' if session[:user].nil?
@@ -82,5 +93,4 @@ class PastaBnB < Sinatra::Base
     insert_space(Space.new(nil, params[:name], params[:owner], params[:desciption], params[:price_per_night], params[:available_start],params[:available_end]))
     redirect '/example'
   end
-
 end

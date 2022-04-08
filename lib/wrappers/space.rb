@@ -22,13 +22,13 @@ class Space
   
     def _spaces_from_query(query)
       query.map do |it| Space.new(
-        it[:id],
-        it[:name], 
-        it[:owner], 
-        it[:description],
-        it[:price_per_night], 
-        Date.parse(it[:available_start]), 
-        Date.parse(it[:available_end])) 
+        it['id'],
+        it['name'], 
+        it['owner'], 
+        it['description'],
+        it['price_per_night'], 
+        Date.parse(it['available_start']), 
+        Date.parse(it['available_end'])) 
       end
     end
   
