@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Please choose to accept or reject booking.</p>
+
+<form action="/booking_accept_reject" method="post">
+<input type="hidden" name="booking_id" value="<%=@booking%>" >
+  <label for="options">Booking decision:</label>
+  <select name="booking_selection" id="options">
+    <option value="accept">Accept</option>
+    <option value="reject">Reject</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click the "Submit" button to confirm yor decision".</p>
+
+</body>
+</html>
