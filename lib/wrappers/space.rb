@@ -37,6 +37,7 @@ class Space
     end
 
     def insert_space(space)
+      binding.irb
       Database.connection.exec_prepared('space_insert', [space.name, space.owner, space.description, space.price_per_night, space.available_start, space.available_end])
     end
 

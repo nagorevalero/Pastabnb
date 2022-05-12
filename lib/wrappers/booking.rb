@@ -30,6 +30,7 @@ class Booking
     end
 
     def get_by_id(id)
+      binding.irb
       _bookings_from_query(Database.connection.exec_prepared('booking_by_id', [id]))[0]
     end
 
